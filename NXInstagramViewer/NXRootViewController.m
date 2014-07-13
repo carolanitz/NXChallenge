@@ -8,16 +8,15 @@
 
 @implementation NXRootViewController
 {
-    UITextField *emailTextfield;
-    UITextField *passwordTextfield;
     UIButton *login;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupEmailTextfield];
-    [self setupPasswordTextfield];
+    // Hier sollte natürlich eine fancy UI sein die genau erklärt, warum der User sich jetzt einloggen soll.
+    // und in der UI wird der LoginButton eingebettet
+
     [self setupLoginButton];
     self.view.backgroundColor = [UIColor lightGrayColor];
     [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
@@ -38,34 +37,6 @@
                                                   }];
 }
 
-- (void)setupEmailTextfield
-{
-    emailTextfield = [UITextField new];
-    emailTextfield.translatesAutoresizingMaskIntoConstraints = NO;
-    [emailTextfield setPlaceholder:NSLocalizedString(@"email", nil)];
-    emailTextfield.backgroundColor = [UIColor whiteColor];
-    [emailTextfield setText: @"nitz.carola@googlemail.com"];
-    [self.view addSubview:emailTextfield];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:emailTextfield attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|->=0-[emailTextfield(>=300)]->=0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(emailTextfield)]];
-}
-
-- (void)setupPasswordTextfield
-{
-    //viel duplication zwischen email und passwortfield sollte in setupTextfield rausgezogen werden
-
-    passwordTextfield = [UITextField new];
-    passwordTextfield.translatesAutoresizingMaskIntoConstraints = NO;
-    passwordTextfield.secureTextEntry = YES;
-    [passwordTextfield setPlaceholder:NSLocalizedString(@"password", nil)];
-    passwordTextfield.backgroundColor = [UIColor whiteColor];
-    [passwordTextfield setText: @"test123"];
-    [self.view addSubview:passwordTextfield];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:passwordTextfield attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-    // 300 sollte als static rausgezogen werden und als metric reingegeben werden
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|->=0-[passwordTextfield(>=300)]->=0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(passwordTextfield)]];
-}
-
 - (void)setupLoginButton
 {
     login = [UIButton new];
@@ -75,14 +46,11 @@
     [self.view addSubview:login];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:login attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:login attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[emailTextfield]-[passwordTextfield]-[login]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(emailTextfield, passwordTextfield, login)]];
 }
 
 - (void)login
 {
-    [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"thisisatest"
-                                                              username:emailTextfield.text
-                                                              password:passwordTextfield.text];
+    [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"thisisatest"];
 }
 
 @end

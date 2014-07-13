@@ -23,6 +23,7 @@
 		4133CBF71971A51700E59906 /* NXRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4133CBF61971A51700E59906 /* NXRootViewController.m */; };
 		4133CBFD1971C01600E59906 /* NXPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4133CBFC1971C01600E59906 /* NXPhotoViewController.m */; };
 		4133CC001971D82500E59906 /* NXPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4133CBFF1971D82500E59906 /* NXPhotoCell.m */; };
+		41E7423A1972A6D200250CC8 /* NXPhotoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E742391972A6D200250CC8 /* NXPhotoObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		4133CBFC1971C01600E59906 /* NXPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXPhotoViewController.m; sourceTree = "<group>"; };
 		4133CBFE1971D82500E59906 /* NXPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXPhotoCell.h; sourceTree = "<group>"; };
 		4133CBFF1971D82500E59906 /* NXPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXPhotoCell.m; sourceTree = "<group>"; };
+		41E742381972A6D200250CC8 /* NXPhotoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXPhotoObject.h; sourceTree = "<group>"; };
+		41E742391972A6D200250CC8 /* NXPhotoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXPhotoObject.m; sourceTree = "<group>"; };
 		6AB54C14285040D7A19D4C5B /* libPods-NXInstagramViewer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NXInstagramViewer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5389CD7C9E2411A8EFE1EA2 /* Pods-NXInstagramViewer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NXInstagramViewer.xcconfig"; path = "Pods/Pods-NXInstagramViewer.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +135,8 @@
 				4133CBCD1971A4E700E59906 /* Supporting Files */,
 				4133CBFE1971D82500E59906 /* NXPhotoCell.h */,
 				4133CBFF1971D82500E59906 /* NXPhotoCell.m */,
+				41E742381972A6D200250CC8 /* NXPhotoObject.h */,
+				41E742391972A6D200250CC8 /* NXPhotoObject.m */,
 			);
 			path = NXInstagramViewer;
 			sourceTree = "<group>";
@@ -297,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4133CC001971D82500E59906 /* NXPhotoCell.m in Sources */,
+				41E7423A1972A6D200250CC8 /* NXPhotoObject.m in Sources */,
 				4133CBF71971A51700E59906 /* NXRootViewController.m in Sources */,
 				4133CBFD1971C01600E59906 /* NXPhotoViewController.m in Sources */,
 				4133CBD71971A4E700E59906 /* NXAppDelegate.m in Sources */,

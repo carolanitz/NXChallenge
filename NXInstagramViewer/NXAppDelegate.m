@@ -9,28 +9,40 @@
 #import "NXAppDelegate.h"
 #import "NXRootViewController.h"
 #import <NXOAuth2Client/NXOAuth2AccountStore.h>
+#import <NXOAuth2Client/NXOAuth2Account.h>
+#import "NXPhotoViewController.h"
 
 @implementation NXAppDelegate
 
 + (void)initialize
 {
-    [[NXOAuth2AccountStore sharedStore] setClientID:@"7a784e83e06f4ac29d15d82b41ae1434"
-                                             secret:@"5460f67c957a4723bc5285991483b554"
-                                              scope:[NSSet setWithObjects:@"likes", @"relationships", @"comments", nil]
+    [[NXOAuth2AccountStore sharedStore] setClientID:@"f2c4524d19ea48e89d83423ee0971142"
+                                             secret:@"e239b3d2d2ef4baf9d7ada94164cbd08"
+                                              scope:[NSSet setWithObjects:@"basic",@"likes", @"relationships", @"comments", nil]
                                    authorizationURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/authorize"]
                                            tokenURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"]
-                                        redirectURL:[NSURL URLWithString:@"http://example.com"]
+                                        redirectURL:[NSURL URLWithString:@"nxdevchallange://oauth"]
                                       keyChainGroup:@"NXinstagramViewer"
                                      forAccountType:@"thisisatest"];
-
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    NXRootViewController *rootViewController = [NXRootViewController new];
-    self.window.rootViewController = rootViewController;
+    if ([[NXOAuth2AccountStore sharedStore] accounts].count > 0) {
+        NXPhotoViewController *photoViewController = [NXPhotoViewController new];
+        self.window.rootViewController = photoViewController;
+    } else {
+        NXRootViewController *rootViewController = [NXRootViewController new];
+        self.window.rootViewController = rootViewController;
+    }
     [self.window makeKeyAndVisible];
+    return YES;
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    //here you need to check for the url if you have more than one type
+    [[NXOAuth2AccountStore sharedStore] handleRedirectURL:url];
     return YES;
 }
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E36FF4FF-533E-4C2D-9227-77F4C959FB07</string>
+	<key>IDESourceControlProjectName</key>
+	<string>NXInstagramViewer</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5FD881FF-FF73-489D-BB68-C7B16F90E27E</key>
+		<string>ssh://github.com/carolanitz/NXChallenge.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>NXInstagramViewer.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5FD881FF-FF73-489D-BB68-C7B16F90E27E</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/carolanitz/NXChallenge.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5FD881FF-FF73-489D-BB68-C7B16F90E27E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5FD881FF-FF73-489D-BB68-C7B16F90E27E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>NXInstagramViewer</string>
+		</dict>
+	</array>
+</dict>
+</plist>
