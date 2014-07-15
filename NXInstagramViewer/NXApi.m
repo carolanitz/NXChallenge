@@ -44,10 +44,10 @@
                sendProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) { // e.g., update a progress indicator
                }
                    responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error){
-                       if (error != nil) {
-                           [[[UIAlertView alloc] initWithTitle:@"Fail!" message:[NSString stringWithFormat:@"couldn't load data \n error:%@",error.localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
-                           return;
-                       }
+//                       if (error != nil) {
+//                           [[[UIAlertView alloc] initWithTitle:@"Fail!" message:[NSString stringWithFormat:@"couldn't load data \n error:%@",error.localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+//                           return;
+//                       }
 
                        NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
                        NSArray *array = jsonArray[@"data"];

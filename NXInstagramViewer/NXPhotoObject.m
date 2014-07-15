@@ -30,7 +30,7 @@
             _location = [self stringForJSONObject:JSONObject[@"location"][@"name"]];
         }
         //here should be more error testing
-        _lowResImageUrl = [NSURL URLWithString:JSONObject[@"images"][@"thumbnail"][@"url"]];
+        _lowResImageUrl = [NSURL URLWithString:JSONObject[@"images"][@"low_resolution"][@"url"]];
         _highResImageUrl = [NSURL URLWithString:JSONObject[@"images"][@"standard_resolution"][@"url"]];
     }
     return self;

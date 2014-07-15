@@ -25,6 +25,7 @@
 		4133CBFD1971C01600E59906 /* NXPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4133CBFC1971C01600E59906 /* NXPhotoViewController.m */; };
 		4133CC001971D82500E59906 /* NXPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4133CBFF1971D82500E59906 /* NXPhotoCell.m */; };
 		41E7423A1972A6D200250CC8 /* NXPhotoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E742391972A6D200250CC8 /* NXPhotoObject.m */; };
+		41F5C8F81975B56B00DE8A8C /* Instagram_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F5C8F71975B56B00DE8A8C /* Instagram_normal.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		4133CBFF1971D82500E59906 /* NXPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXPhotoCell.m; sourceTree = "<group>"; };
 		41E742381972A6D200250CC8 /* NXPhotoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXPhotoObject.h; sourceTree = "<group>"; };
 		41E742391972A6D200250CC8 /* NXPhotoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXPhotoObject.m; sourceTree = "<group>"; };
+		41F5C8F71975B56B00DE8A8C /* Instagram_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instagram_normal.png; sourceTree = "<group>"; };
 		6AB54C14285040D7A19D4C5B /* libPods-NXInstagramViewer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NXInstagramViewer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5389CD7C9E2411A8EFE1EA2 /* Pods-NXInstagramViewer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NXInstagramViewer.xcconfig"; path = "Pods/Pods-NXInstagramViewer.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +137,7 @@
 				4133CBFB1971C01600E59906 /* NXPhotoViewController.h */,
 				4133CBFC1971C01600E59906 /* NXPhotoViewController.m */,
 				4133CBD81971A4E700E59906 /* Images.xcassets */,
+				41F5C8F71975B56B00DE8A8C /* Instagram_normal.png */,
 				4133CBCD1971A4E700E59906 /* Supporting Files */,
 				4133CBFE1971D82500E59906 /* NXPhotoCell.h */,
 				4133CBFF1971D82500E59906 /* NXPhotoCell.m */,
@@ -254,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4133CBD11971A4E700E59906 /* InfoPlist.strings in Resources */,
+				41F5C8F81975B56B00DE8A8C /* Instagram_normal.png in Resources */,
 				4133CBD91971A4E700E59906 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,6 @@
 
 @end
 
-static const CGSize kCellSize = {200.0, 200.0};
 static const CGFloat kMinimumLineSpacing = 10.0;
 
 @implementation NXPhotoViewController
@@ -17,6 +16,7 @@ static const CGFloat kMinimumLineSpacing = 10.0;
     UIImageView *_imageView;
     CGRect prevFrame;
     UIView *_backgroundView;
+    UICollectionViewFlowLayout *_flowLayout;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -25,6 +25,7 @@ static const CGFloat kMinimumLineSpacing = 10.0;
     if (self) {
         _photos = [NSMutableArray new];
         _imageView = [UIImageView new];
+        self.navigationItem.title = @"Browse";
         [self setupCollectionView];
         [self fetchPhotos];
         [self setupBackgroundView];
@@ -36,6 +37,7 @@ static const CGFloat kMinimumLineSpacing = 10.0;
 {
     [[NXApi sharedAPI] getUserPhotosWithCallback:^(NSArray *array, NSError *error) {
         if (error != nil){
+            //localize
             [[[UIAlertView alloc] initWithTitle:@"Fail!" message:[NSString stringWithFormat:@"couldn't load data \n error:%@",error.localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
             return;
         }
@@ -59,11 +61,11 @@ static const CGFloat kMinimumLineSpacing = 10.0;
 
 - (void)setupCollectionView
 {
-    UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
-    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:flowLayout];
+    _flowLayout = [UICollectionViewFlowLayout new];
+    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:_flowLayout];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    _collectionView.backgroundColor = [UIColor whiteColor];
+    _collectionView.backgroundColor = [UIColor blackColor];
     [_collectionView registerClass:[NXPhotoCell class] forCellWithReuseIdentifier:@"NXPhotoCell"];
     [self.view addSubview:_collectionView];
 }
@@ -82,11 +84,9 @@ static const CGFloat kMinimumLineSpacing = 10.0;
     return cell;
 }
 
-// all numbers in static const upfront ideal would be to dynamically calculate cellsizes
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
-    return kCellSize;
+    return CGSizeMake(self.view.frame.size.width /2.0 - 5, self.view.frame.size.width /2.0 - 5);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section

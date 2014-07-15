@@ -20,17 +20,32 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self setupAppearance];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     if ([[NXApi sharedAPI] userIsLoggedIn]) {
+        NXRootViewController *rootViewController = [NXRootViewController new];
+        UINavigationController *navController = [UINavigationController new];
         NXPhotoViewController *photoViewController = [NXPhotoViewController new];
-        self.window.rootViewController = photoViewController;
+        navController.viewControllers = @[rootViewController, photoViewController];
+        self.window.rootViewController = navController;
     } else {
         NXRootViewController *rootViewController = [NXRootViewController new];
-        self.window.rootViewController = rootViewController;
+        UINavigationController *navController = [UINavigationController new];
+        navController.viewControllers = @[rootViewController];
+        self.window.rootViewController = navController;
     }
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+- (void)setupAppearance
+{
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:48.0/255.0 green:93.0/255.0 blue:139.0/255.0 alpha:1.0]];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     //here you need to check for the url if you have more than one type

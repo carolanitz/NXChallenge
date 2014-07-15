@@ -19,13 +19,15 @@
     // und in der UI wird der LoginButton eingebettet
 
     [self setupLoginButton];
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.navigationItem.title = @"Login";
+
+    self.view.backgroundColor = [UIColor blackColor];
     [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
                                                       object:[NXOAuth2AccountStore sharedStore]
                                                        queue:nil
                                                   usingBlock:^(NSNotification *aNotification){
                                                       NXPhotoViewController *collectionView = [NXPhotoViewController new];
-                                                      [self.navigationController setViewControllers:@[collectionView]];
+                                                      [self.navigationController pushViewController:collectionView animated:YES];
                                                   }];
     [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
                                                       object:[NXOAuth2AccountStore sharedStore]
@@ -40,9 +42,9 @@
 - (void)setupLoginButton
 {
     login = [UIButton new];
-    [login setTitle:NSLocalizedString(@"login", nil) forState:UIControlStateNormal];
     login.translatesAutoresizingMaskIntoConstraints = NO;
     [login addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    [login setBackgroundImage:[UIImage imageNamed:@"Instagram_normal"] forState:UIControlStateNormal];
     [self.view addSubview:login];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:login attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:login attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
