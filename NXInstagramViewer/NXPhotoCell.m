@@ -75,18 +75,11 @@
     if (object.location) {
         _location.text = [NSString stringWithFormat:@"Location:%@",object.location];
     }
+    [object loadLowResPicture:^(UIImage *image) {
+        [_imageView setImage:image];
+        [_imageView setFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
+        [self layoutIfNeeded];
+    }];
 
-    //at this part an imageCache should be used to not always load the picture
-    //and an activityindicator should be shown as well
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-    dispatch_async(queue, ^{
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:object.lowResImageUrl]];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [_imageView setImage:image];
-            [_imageView setFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
-            //[self setNeedsLayout];
-            [self layoutIfNeeded];
-        });
-    });
 }
 @end

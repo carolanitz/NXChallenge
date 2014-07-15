@@ -1,6 +1,7 @@
 #import "NXRootViewController.h"
 #import <NXOAuth2Client/NXOAuth2AccountStore.h>
 #import "NXPhotoViewController.h"
+#import "NXApi.h"
 
 @interface NXRootViewController ()
 
@@ -24,8 +25,7 @@
                                                        queue:nil
                                                   usingBlock:^(NSNotification *aNotification){
                                                       NXPhotoViewController *collectionView = [NXPhotoViewController new];
-                                                      [self.navigationController pushViewController:collectionView animated:YES];
-                                                      //
+                                                      [self.navigationController setViewControllers:@[collectionView]];
                                                   }];
     [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
                                                       object:[NXOAuth2AccountStore sharedStore]
@@ -50,7 +50,7 @@
 
 - (void)login
 {
-    [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"thisisatest"];
+    [[NXApi sharedAPI] login];
 }
 
 @end

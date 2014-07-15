@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A75F8F885234F53BC47BDDE /* libPods-NXInstagramViewer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB54C14285040D7A19D4C5B /* libPods-NXInstagramViewer.a */; };
+		412F75631974480A00DD8B46 /* NXApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 412F75621974480A00DD8B46 /* NXApi.m */; };
 		4133CBC71971A4E700E59906 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4133CBC61971A4E700E59906 /* Foundation.framework */; };
 		4133CBC91971A4E700E59906 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4133CBC81971A4E700E59906 /* CoreGraphics.framework */; };
 		4133CBCB1971A4E700E59906 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4133CBCA1971A4E700E59906 /* UIKit.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		412F75611974480A00DD8B46 /* NXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXApi.h; sourceTree = "<group>"; };
+		412F75621974480A00DD8B46 /* NXApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXApi.m; sourceTree = "<group>"; };
 		4133CBC31971A4E700E59906 /* NXInstagramViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NXInstagramViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4133CBC61971A4E700E59906 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4133CBC81971A4E700E59906 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -137,6 +140,8 @@
 				4133CBFF1971D82500E59906 /* NXPhotoCell.m */,
 				41E742381972A6D200250CC8 /* NXPhotoObject.h */,
 				41E742391972A6D200250CC8 /* NXPhotoObject.m */,
+				412F75611974480A00DD8B46 /* NXApi.h */,
+				412F75621974480A00DD8B46 /* NXApi.m */,
 			);
 			path = NXInstagramViewer;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 				41E7423A1972A6D200250CC8 /* NXPhotoObject.m in Sources */,
 				4133CBF71971A51700E59906 /* NXRootViewController.m in Sources */,
 				4133CBFD1971C01600E59906 /* NXPhotoViewController.m in Sources */,
+				412F75631974480A00DD8B46 /* NXApi.m in Sources */,
 				4133CBD71971A4E700E59906 /* NXAppDelegate.m in Sources */,
 				4133CBD31971A4E700E59906 /* main.m in Sources */,
 			);

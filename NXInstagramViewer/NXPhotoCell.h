@@ -7,4 +7,5 @@
 - (void)updateWithPhotoObject:(NXPhotoObject *)object;
 
 @property (nonatomic, readonly) UIImageView *imageView;
+
 @end

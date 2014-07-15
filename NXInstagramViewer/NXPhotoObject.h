@@ -10,4 +10,8 @@
 
 - (instancetype)initWithJSONObject:(NSDictionary *)JSONObject;
 
+- (void)loadLowResPicture:(void (^)(UIImage *image))callback;
+
+- (void)loadHighResPicture:(void (^)(UIImage *image))callback;
+
 @end

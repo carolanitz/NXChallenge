@@ -8,28 +8,20 @@
 
 #import "NXAppDelegate.h"
 #import "NXRootViewController.h"
-#import <NXOAuth2Client/NXOAuth2AccountStore.h>
-#import <NXOAuth2Client/NXOAuth2Account.h>
 #import "NXPhotoViewController.h"
+#import "NXApi.h"
 
 @implementation NXAppDelegate
 
 + (void)initialize
 {
-    [[NXOAuth2AccountStore sharedStore] setClientID:@"f2c4524d19ea48e89d83423ee0971142"
-                                             secret:@"e239b3d2d2ef4baf9d7ada94164cbd08"
-                                              scope:[NSSet setWithObjects:@"basic",@"likes", @"relationships", @"comments", nil]
-                                   authorizationURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/authorize"]
-                                           tokenURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"]
-                                        redirectURL:[NSURL URLWithString:@"nxdevchallange://oauth"]
-                                      keyChainGroup:@"NXinstagramViewer"
-                                     forAccountType:@"thisisatest"];
+    [[NXApi sharedAPI] initialize];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    if ([[NXOAuth2AccountStore sharedStore] accounts].count > 0) {
+    if ([[NXApi sharedAPI] userIsLoggedIn]) {
         NXPhotoViewController *photoViewController = [NXPhotoViewController new];
         self.window.rootViewController = photoViewController;
     } else {
@@ -42,7 +34,7 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     //here you need to check for the url if you have more than one type
-    [[NXOAuth2AccountStore sharedStore] handleRedirectURL:url];
+    [[NXApi sharedAPI] handleURL:url];
     return YES;
 }
 
