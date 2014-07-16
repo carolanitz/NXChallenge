@@ -3,7 +3,7 @@
 #import "NXPhotoViewController.h"
 #import "NXApi.h"
 
-@interface NXRootViewController ()
+@interface NXRootViewController () <UIViewControllerRestoration>
 
 @end
 
@@ -12,9 +12,21 @@
     UIButton *login;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if(self)
+    {
+        self.restorationIdentifier = @"rootViewController";
+        self.restorationClass = [self class];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.restorationIdentifier = @"LoginView";
     // Hier sollte natürlich eine fancy UI sein die genau erklärt, warum der User sich jetzt einloggen soll.
     // und in der UI wird der LoginButton eingebettet
 
@@ -50,9 +62,26 @@
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:login attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
 }
 
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    return [self new];
+}
+
 - (void)login
 {
     [[NXApi sharedAPI] login];
+}
+
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.view forKey:@"LoginView"];
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    self.view = [coder decodeObjectForKey:@"LoginView"];
+    [super decodeRestorableStateWithCoder:coder];
 }
 
 @end

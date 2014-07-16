@@ -1,11 +1,3 @@
-//
-//  NXAppDelegate.m
-//  NXInstagramViewer
-//
-//  Created by Carola Nitz on 12/07/14.
-//  Copyright (c) 2014 nxtbgthng. All rights reserved.
-//
-
 #import "NXAppDelegate.h"
 #import "NXRootViewController.h"
 #import "NXPhotoViewController.h"
@@ -18,28 +10,53 @@
     [[NXApi sharedAPI] initialize];
 }
 
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    return [self launchWithOptions:launchOptions];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self setupAppearance];
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    if ([[NXApi sharedAPI] userIsLoggedIn]) {
+    return [self launchWithOptions:launchOptions];
+}
+
+- (BOOL)launchWithOptions:(NSDictionary *)launchOptions
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self setupAppearance];
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         NXRootViewController *rootViewController = [NXRootViewController new];
-        UINavigationController *navController = [UINavigationController new];
-        NXPhotoViewController *photoViewController = [NXPhotoViewController new];
-        navController.viewControllers = @[rootViewController, photoViewController];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+        navController.restorationIdentifier = @"NavigationController";
+        //    if ([[NXApi sharedAPI] userIsLoggedIn]) {
+        //        NXPhotoViewController *photoViewController = [NXPhotoViewController new];
+        //        photoViewController.restorationIdentifier = @"photoViewController";
+        //        navController.viewControllers = @[rootViewController, photoViewController];
+        //    } else {
+        //navController.viewControllers = @[rootViewController];
+        //    }
         self.window.rootViewController = navController;
-    } else {
-        NXRootViewController *rootViewController = [NXRootViewController new];
-        UINavigationController *navController = [UINavigationController new];
-        navController.viewControllers = @[rootViewController];
-        self.window.rootViewController = navController;
-    }
-    [self.window makeKeyAndVisible];
+        [self.window makeKeyAndVisible];
+        
+    });
+    
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
+{
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
+{
     return YES;
 }
 
 - (void)setupAppearance
 {
+    //instagram colour, ideal would be a category on UIColor  
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:48.0/255.0 green:93.0/255.0 blue:139.0/255.0 alpha:1.0]];
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -51,6 +68,31 @@
     //here you need to check for the url if you have more than one type
     [[NXApi sharedAPI] handleURL:url];
     return YES;
+}
+
+-(UIViewController *)application:(UIApplication *)application viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    return [UIViewController new];
+}
+
+- (void)application:(UIApplication *)application willEncodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.window.rootViewController forKey:@"navController"];
+}
+
+- (void)application:(UIApplication *)application didDecodeRestorableStateWithCoder:(NSCoder *)coder {
+
+    UINavigationController *navController = [coder decodeObjectForKey:@"navController"];
+
+    if (navController) {
+        self.window.rootViewController = navController;
+    }
+    
+}
+
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    return [self new];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

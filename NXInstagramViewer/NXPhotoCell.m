@@ -24,7 +24,6 @@
     _imageView = [[UIImageView alloc] init];
     _imageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:_imageView];
-    [self.contentView sendSubviewToBack:_imageView];
     [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_imageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
     [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_imageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
     [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_imageView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
@@ -41,6 +40,7 @@
 - (void)setupCaptionLabel
 {
     _caption = [self setupLabel];
+    //transparency is evil and should be avoided when performance is bad
     _caption.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     _caption.textAlignment = NSTextAlignmentCenter;
     [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_caption attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_imageView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
@@ -60,6 +60,7 @@
 - (UILabel *)setupLabel
 {
     UILabel *label = [UILabel new];
+    //transparency is evil and should be avoided when performance is bad
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
     label.shadowOffset = CGSizeMake(1.0, 1.0);
